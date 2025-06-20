@@ -12,7 +12,14 @@ public class BallController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        LaunchBall();
+    }
+    void Update()
+    {
+        // Launch the ball when the space key is pressed
+        if (Input.GetKeyDown(KeyCode.Space) || !isLaunched)
+        {
+            LaunchBall();
+        }
     }
 
     void FixedUpdate()

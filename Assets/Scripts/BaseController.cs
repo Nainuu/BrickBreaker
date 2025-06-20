@@ -2,15 +2,13 @@ using UnityEngine;
 
 public class BaseController : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private GameObject gameOverPanel;  
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (collision.gameObject.CompareTag("Ball"))
+        {
+            Time.timeScale = 0f;
+            gameOverPanel.SetActive(true);
+        }
     }
 }
