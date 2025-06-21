@@ -23,7 +23,7 @@ public class Brick : MonoBehaviour
                 Debug.Log("Brick destroyed! Total bricks destroyed: " + bricksDestroyed);
                 if (BrickSpawner.totalBricks == bricksDestroyed)
                 {
-                    scoreCalculator.playerWon();
+                    scoreCalculator.playerWon(bricksDestroyed);
                 }
                 Destroy(gameObject);
 

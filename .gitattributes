@@ -1,0 +1,11 @@
+# Treat Unity scene files as binary
+*.unity binary
+*.prefab binary
+*.mat binary
+*.asset binary
+
+# Use LF for scripts
+*.cs text eol=lf
+
+# Handle general text files
+*.txt text
