@@ -11,13 +11,13 @@ public class ScoreCalculator : MonoBehaviour
     public void LiveScore(int bricksDestroyed)
     {
         score = bricksDestroyed * scorePerBrick;
-        scoreText.text = score.ToString();
+        // scoreText.text = score.ToString();
         Debug.Log("Current Score: " + score);
     }
     private void Start()
     {
         // Initialize score text
-        scoreText.text = "Score: " + score.ToString();
+        // scoreText.text = "Score: " + score.ToString();
         youWonPanel.SetActive(false);
     }
     public void playerWon()

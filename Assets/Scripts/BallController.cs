@@ -13,41 +13,49 @@ public class BallController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
     }
+
     void Update()
     {
-        // Launch the ball when the space key is pressed
         if (Input.GetKeyDown(KeyCode.Space) && !isLaunched)
         {
-            Debug.Log("Launching Ball");
             LaunchBall();
         }
     }
 
     void FixedUpdate()
     {
-        if (isLaunched)
+        if (!isLaunched) return;
+
+        Vector2 velocity = rb.velocity;
+
+        velocity = velocity.normalized * maxSpeed;
+
+        // Prevent horizontal trap (angle too flat)
+        float angle = Vector2.Angle(velocity, Vector2.up);
+        if (Mathf.Abs(velocity.y) < 0.2f)
         {
-            if (rb.linearVelocity.magnitude > maxSpeed)
-            {
-                rb.linearVelocity = rb.linearVelocity.normalized * maxSpeed;
-            }
-            else
-            {
-                if (rb.linearVelocity.y < 0.1f && rb.linearVelocity.y > -0.1f)
-                {
-                    rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0.1f);
-                }
-            }   
+            Debug.Log("Ball is too horizontal — correcting direction");
+
+            // Give a small vertical push (random up or down)
+            float fixedX = Random.Range(-0.3f, 0.3f); // small angle variation
+            float fixedY = 0.8f;
+
+            velocity = new Vector2(fixedX, fixedY).normalized * maxSpeed;;
         }
+
+        rb.velocity = velocity;
     }
 
     void LaunchBall()
     {
         Vector2 launchDirection = new Vector2(Random.Range(-0.5f, 0.5f), 1f).normalized;
-        rb.AddForce(launchDirection * launchForce);
+        rb.velocity = launchDirection * maxSpeed;
+
         isLaunched = true;
-        WelcomePanel.SetActive(false);
+
+        FindFirstObjectByType<AudioManager>()?.Play("hitPaddle");
+        if (WelcomePanel != null)
+            WelcomePanel.SetActive(false);
     }
 }

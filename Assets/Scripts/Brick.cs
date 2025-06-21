@@ -12,9 +12,11 @@ public class Brick : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ball"))
         {
+            FindFirstObjectByType<AudioManager>().Play("hit");
             health--;
             if (health <= 0)
             {
+                FindFirstObjectByType<AudioManager>().Play("destroy");
                 bricksDestroyed++;
                 ScoreCalculator scoreCalculator = FindFirstObjectByType<ScoreCalculator>();
                 scoreCalculator.LiveScore(bricksDestroyed);
