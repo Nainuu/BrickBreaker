@@ -28,3 +28,5 @@ A prototype which only has 1 stage at the moment.
 | Launch Ball      | `Space`           |
 | Restart on Game Over | `Space`       |
 
+![bb2](https://github.com/user-attachments/assets/e39035c6-1c4f-443f-801e-12bdffab1139)
+![bb1](https://github.com/user-attachments/assets/11f49a45-2995-4447-b01e-9e99f02dda0b)
