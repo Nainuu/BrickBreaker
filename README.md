@@ -1,5 +1,7 @@
 # Brick Breaker Game (Unity 2D)
 > 2nd Mini Project — Built in Unity
+> play on
+https://husnain-anwar.itch.io/brick-breaker
 
 This is my second mini project: a classic **Brick Breaker** arcade game built using **Unity 2D**. The player controls a paddle to bounce the ball, break bricks, and score as high as possible while managing limited lives. 
 A prototype which only has 1 stage at the moment.
