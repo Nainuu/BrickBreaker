@@ -102,6 +102,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
+  scoreText: {fileID: 0}
+  GameHitPrefab: {fileID: 8966817934795031501, guid: 78c8b2fb857b28141a3b006da7381328, type: 3}
 --- !u!61 &-3159633409999553961
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -28,12 +28,16 @@ public class BaseController : MonoBehaviour
         {
             lives--;
             FindFirstObjectByType<AudioManager>().Play("die");
-            // audioManager.Play("playerDeath");
-            if (lives == 0)
+            if (lives > 0)
             {
-                Debug.Log("Lives left: " + lives);
-                // Reset ball position or any other logic for losing a life
-                collision.gameObject.transform.position = new Vector2(0, -3); // Example reset position
+                Rigidbody2D rb = collision.gameObject.GetComponent<Rigidbody2D>();
+                rb.linearVelocity = Vector2.zero;
+
+                // Move the ball to a resting position (above the paddle)
+                collision.gameObject.transform.position = new Vector2(0f, -3f); // You can adjust Y if needed
+
+                // Tell the ball to wait for space key
+                FindFirstObjectByType<BallController>()?.PrepareForRelaunch();
             }
             else
             {
@@ -53,7 +57,7 @@ public class BaseController : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(startSceneName);
-        scoreCalculator.bricksDestroyed = 0;
+        scoreCalculator.resetScore();
     }
     public void GameOver()
     {
@@ -61,6 +65,5 @@ public class BaseController : MonoBehaviour
         isGameOver = true;
         gameOverPanel.SetActive(true);
         FinalScore.text = "Final Score: " + scoreCalculator.score.ToString();
-        scoreCalculator.bricksDestroyed = 0; // Reset bricks destroyed for next game
     }
 }
